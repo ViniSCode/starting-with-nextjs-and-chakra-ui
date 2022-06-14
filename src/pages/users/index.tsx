@@ -1,10 +1,16 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import { RiAddLine, RiPencilLine } from 'react-icons/ri';
 import { Header } from '../../components/Header';
 import { Sidebar } from '../../components/Sidebar';
 import { Pagination } from './../../components/Pagination';
 
 export default function UserList () {
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
   return(
     <Box>
       <Header />
@@ -15,17 +21,18 @@ export default function UserList () {
         <Box flex='1' borderRadius={8} bg="gray.800" p="8">
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="large" fontWeight="normal">Usuários</Heading>
-
-            <Button
-              as="a"
-              size="sm"
-              fontSize="small"
-              colorScheme="pink"
-              leftIcon={<Icon
-              as={RiAddLine} fontSize="20"/>}
-            >
-              Criar novo
-            </Button>
+            <Link href="/users/create" passHref>
+              <Button
+                as="a"
+                size="sm"
+                fontSize="small"
+                colorScheme="pink"
+                leftIcon={<Icon
+                as={RiAddLine} fontSize="20"/>}
+              >
+                Criar novo
+              </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme="whiteAlpha">
@@ -35,7 +42,9 @@ export default function UserList () {
                   <Checkbox colorScheme="pink"/>
                 </Th>
                 <Th>Usuário</Th>
-                <Th>Data de cadastro</Th>
+
+                {isWideVersion && <Th>Data de cadastro</Th>}
+
                 <Th width="8"></Th>
               </Tr>
             </Thead>
@@ -50,8 +59,9 @@ export default function UserList () {
                     <Text fontSize="small" color="gray.300">diego.shell.f@gmail.com </Text>
                   </Box>
                 </Td>
-                <Td>04 de Abril, 2021</Td>
+                {isWideVersion && <Td>04 de Abril, 2021</Td>}
                 <Td>
+                { isWideVersion && (
                   <Button
                     as="a"
                     size="sm"
@@ -61,7 +71,8 @@ export default function UserList () {
                     as={RiPencilLine} fontSize="16"/>}
                   >
                     Editar
-                  </Button>
+                  </Button>)
+                  }
                 </Td>
               </Tr>
               <Tr>
@@ -74,8 +85,9 @@ export default function UserList () {
                     <Text fontSize="small" color="gray.300">diego.shell.f@gmail.com </Text>
                   </Box>
                 </Td>
-                <Td>04 de Abril, 2021</Td>
+                {isWideVersion && <Td>04 de Abril, 2021</Td>}
                 <Td>
+                { isWideVersion && (
                   <Button
                     as="a"
                     size="sm"
@@ -85,7 +97,8 @@ export default function UserList () {
                     as={RiPencilLine} fontSize="16"/>}
                   >
                     Editar
-                  </Button>
+                  </Button>)
+                  }
                 </Td>
               </Tr>
               <Tr>
@@ -98,8 +111,9 @@ export default function UserList () {
                     <Text fontSize="small" color="gray.300">diego.shell.f@gmail.com </Text>
                   </Box>
                 </Td>
-                <Td>04 de Abril, 2021</Td>
+                {isWideVersion && <Td>04 de Abril, 2021</Td>}
                 <Td>
+                  { isWideVersion && (
                   <Button
                     as="a"
                     size="sm"
@@ -109,7 +123,8 @@ export default function UserList () {
                     as={RiPencilLine} fontSize="16"/>}
                   >
                     Editar
-                  </Button>
+                  </Button>)
+                  }
                 </Td>
               </Tr>
             </Tbody>
